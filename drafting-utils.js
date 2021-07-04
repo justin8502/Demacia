@@ -56,7 +56,7 @@ async function generateDraftLOL(team1, team2, blueBanCount, redBanCount) {
 
   let link_elems = await page.$$("input");
   let links = await Promise.all(link_elems.map((cur) => page.evaluate((el) => el.value, cur)));
-  let res = `${team1}: ${links[0]}\n${team2}: ${links[1]}\nSpec: ${links[2]}`;
+  let res = `${team1} Captain: ${links[0]}\n${team2} Captain: ${links[1]}\nSpectator Link: ${links[2]}`;
 
   browser.close();
 
@@ -94,10 +94,9 @@ async function generateProDraft(team1, team2) {
   let blueTeam = await page.evaluate(el => el.value, blue)
   let redTeam = await page.evaluate(el => el.value, red)
   let matchTeam = await page.evaluate(el => el.value, match)
-  
+
   browser.close();
-  resp = team1 + ": " + blueTeam + '\n' + team2 + ": " + redTeam + 
-    '\n' + "Spec: " + matchTeam
+  resp =`${team1} Captain: ${blueTeam}\n${team2} Captain: ${redTeam}\nSpectator Link: ${matchTeam}`;
 
   return resp;
 }
