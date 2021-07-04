@@ -1,0 +1,25 @@
+{
+  "name": "demacia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0",
+    "puppeteer": "^10.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justin8502/Demacia.git"
+  },
+  "author": "thisenemy#8502",
+  "license": "MIT",
+  "engines": {
+    "node": "14.15.1"
+  }
+}
