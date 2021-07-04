@@ -1,14 +1,16 @@
 // IMPORTS
 const axios = require("axios");
 const Discord = require("discord.js");
+const dotenv = require('dotenv');
 // const { GoogleSpreadsheet } = require("google-spreadsheet");
 
 // PROJECT IMPORTS
 // const creds = require("./client_secret.json");
-const config = require("./config.json");
+// const config = require("./config.json");
 const constants = require("./constants");
 const draft = require("./drafting-utils");
 
+dotenv.config();
 const client = new Discord.Client();
 
 // Using battlefy api endpoint
@@ -93,44 +95,44 @@ client.on("message", async function(message) {
     //   message.channel.send("Players: " + constants.SIGNUPS.PLAYER);
     //   message.channel.send("Captains: " + constants.SIGNUPS.CAPTAIN);
     //   break;
-    case "standings":
-      let res = await getTournamentStageMatches("");
-      let sorted = Object.keys(res).map(function(key) {
-        return [key, [res[key][0].length, res[key][1].length]];
-      });
-      // console.log(sorted);
-      // First = Wins, Second = Losses
-      // Sort first based on wins, second on who has lost more
-      sorted.sort(function(first, second) {
-        if (first[1][0] === second[1][0]) {
-          return first[1][1] - second[1][1];
-        } else {
-          return second[1][0] - first[1][0];
-        }
-      });
-      // console.log(sorted);
-      let standings = "Here are the current standings: \n \n";
-      for (item in sorted) {
-        standings +=
-          "*" +
-          (parseInt(item) + 1).toString() +
-          ": " +
-          sorted[item][0] +
-          "* (W: " +
-          sorted[item][1][0] +
-          " L: " +
-          sorted[item][1][1] +
-          ")\n";
-      }
-      message.channel.send(standings);
-      break;
+    // case "standings":
+    //   let res = await getTournamentStageMatches("");
+    //   let sorted = Object.keys(res).map(function(key) {
+    //     return [key, [res[key][0].length, res[key][1].length]];
+    //   });
+    //   // console.log(sorted);
+    //   // First = Wins, Second = Losses
+    //   // Sort first based on wins, second on who has lost more
+    //   sorted.sort(function(first, second) {
+    //     if (first[1][0] === second[1][0]) {
+    //       return first[1][1] - second[1][1];
+    //     } else {
+    //       return second[1][0] - first[1][0];
+    //     }
+    //   });
+    //   // console.log(sorted);
+    //   let standings = "Here are the current standings: \n \n";
+    //   for (item in sorted) {
+    //     standings +=
+    //       "*" +
+    //       (parseInt(item) + 1).toString() +
+    //       ": " +
+    //       sorted[item][0] +
+    //       "* (W: " +
+    //       sorted[item][1][0] +
+    //       " L: " +
+    //       sorted[item][1][1] +
+    //       ")\n";
+    //   }
+    //   message.channel.send(standings);
+    //   break;
     default:
       // message.channel.send("Not a valid command. Type !ff for help. ");
       break;
   }
 });
 
-client.login(config.BOT_TOKEN);
+client.login(process.env.DISCORD_TOKEN);
 
 async function getTournamentStageMatches(stage) {
   const response = await tournamentApi.get(`stages/${stage}/matches`);
