@@ -78,9 +78,9 @@
 
 const HELP_MSG =
   "The following commands are available: \n \n" +
-  "*!draftlol [team1 team2] [ban1 ban2]*: Returns draftlol links for specified teams/bans. \n" +
-  "*!prodraft [team1 team2]*: Returns prodraft links for specified teams. \n" +
-  "*!help*: Displays this help message. \n \n" +
+  "*.draftlol [team1 team2] [ban1 ban2]*: Returns draftlol links for specified teams/bans. \n" +
+  "*.prodraft [team1 team2]*: Returns prodraft links for specified teams. \n" +
+  "*.help*: Displays this help message. \n \n" +
   "Demacia is developed and maintained by thisenemy#8502.";
 
 const PREFIX = ".";
